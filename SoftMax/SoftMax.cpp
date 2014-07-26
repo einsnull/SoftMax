@@ -4,9 +4,9 @@
 using namespace std;
 #include "SoftMax.h"
 
-#pragma comment(lib,"opencv_core243.lib")
-#pragma comment(lib,"opencv_highgui243.lib")
-#pragma comment(lib,"opencv_imgproc243.lib")
+#pragma comment(lib,"opencv_core246.lib")
+#pragma comment(lib,"opencv_highgui246.lib")
+#pragma comment(lib,"opencv_imgproc246.lib")
 
 void buildImage(MatrixXd &theta,int imgWidth,char* szFileName,bool showFlag = false,double ratio = 1);
 bool loadMnistData(MatrixXd &data,char *szFileName);
@@ -36,10 +36,11 @@ int main()
 	{
 		return -1;
 	}
+	cout << "Minlabel: " << trainingLabels.minCoeff() << endl;
 	MatrixXd showData = trainingData.leftCols(100).transpose();
 	buildImage(showData,28,"data.jpg",false);
 
-	SoftMax softmax(inputSize,numClasses);
+	Softmax softmax(inputSize,numClasses);
 	cout << "Training..." << endl;
 	softmax.train(trainingData,trainingLabels,lambda,alpha,maxIter,miniBatchSize);
 
